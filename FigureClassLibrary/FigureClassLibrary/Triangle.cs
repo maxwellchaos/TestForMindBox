@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FigureClassLibrary
 {
-    class Triangle : Poligon
+    public class Triangle : Poligon
     {
-        private double edge1;
-        private double edge2;
-        private double edge3;
+        private double _edge1;
+        private double _edge2;
+        private double _edge3;
         public Triangle(List<double> edges)
         {
             SetEdges(edges);
@@ -57,14 +57,17 @@ namespace FigureClassLibrary
             {
                 throw new ArgumentException("Длинна одной из сторон не может превышать сумму длин двух других");
             }
+            _edge1 = edge1;
+            _edge2 = edge2;
+            _edge3 = edge3;
         }
 
         public override List<double> Edges()
         {
             List<double> edges = new List<double>();
-            edges.Add(edge1);
-            edges.Add(edge2);
-            edges.Add(edge3);
+            edges.Add(_edge1);
+            edges.Add(_edge2);
+            edges.Add(_edge3);
             return edges;
         }
 
@@ -73,9 +76,9 @@ namespace FigureClassLibrary
             //использую формулу герона
             double halfPerimetr = Perimetr() / 2;
             double square = Math.Sqrt(halfPerimetr
-                                        *(halfPerimetr - edge1) 
-                                        *(halfPerimetr - edge2) 
-                                        *(halfPerimetr - edge3));
+                                        *(halfPerimetr - _edge1) 
+                                        *(halfPerimetr - _edge2) 
+                                        *(halfPerimetr - _edge3));
             return square;
         }
 
